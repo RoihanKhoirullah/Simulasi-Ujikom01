@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Siswa;
 
-class SiswaController extends Controller
+class DatasiswaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class SiswaController extends Controller
     public function index()
     {
         $siswa = Siswa::all();
-        return view('admin.siswa.index' ,  compact('siswa'));
+        return view('frontend.datasiswa.index' ,  compact('siswa'));
     }
 
     /**
@@ -36,18 +36,7 @@ class SiswaController extends Controller
      */
     public function store(Request $request)
     {
-        $siswa = Siswa::create([
-            'reg' => $request -> reg,
-            'nama' => $request -> nama,
-            'jk' => $request -> jk,
-            'alamat' => $request -> alamat,
-            'agama' => $request -> agama,
-            'asal_sekolah' => $request -> asal_sekolah,
-            'minat_jurusan' => $request -> minat_jurusan,            
-            
-         ]);
-        return redirect('datasiswa')->with('toast_success', 'Data Berhasil Ditambahkan');
-        // return redirect()->route('print-siswa', $siswa->id);
+        //
     }
 
     /**
@@ -69,8 +58,7 @@ class SiswaController extends Controller
      */
     public function edit($id)
     {
-        $siswa = Siswa::findOrFail($id);
-        return view('admin.siswa.edit', compact('siswa'));
+        //
     }
 
     /**
@@ -82,12 +70,7 @@ class SiswaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $siswa = Siswa::findorfail($id);
-        $siswa->update($request->all());
-
-        return redirect('/siswa')->with('toast_success', 'Data Berhasil Diubah');
-        // return redirect()->route('print-siswa', $siswa->id);
-
+        //
     }
 
     /**
@@ -98,8 +81,6 @@ class SiswaController extends Controller
      */
     public function destroy($id)
     {
-        $delete = Siswa::findorfail($id);
-        $delete->delete();
-        return redirect('/siswa')->with('toast_success', 'Data Berhasil Dihapus');
+        //
     }
 }

@@ -32,3 +32,6 @@ Route::post('/update-siswa/{id}' , 'SiswaController@update')->name('update-siswa
 Route::get('/delete-siswa/{id}' , 'SiswaController@destroy')->name('delete-siswa');
 
 Route::get('/print-siswa/{id}' , 'PrintController@index')->name('print-siswa');
+
+
+Route::get('/datasiswa' , 'DatasiswaController@index')->name('datasiswa');
