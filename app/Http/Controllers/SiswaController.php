@@ -46,7 +46,8 @@ class SiswaController extends Controller
             'minat_jurusan' => $request -> minat_jurusan,            
             
          ]);
-        return redirect('siswa');
+        return redirect('siswa')->with('toast_success', 'Data Berhasil Ditambahkan');
+        // return redirect()->route('print-siswa', $siswa->id);
     }
 
     /**
@@ -84,8 +85,8 @@ class SiswaController extends Controller
         $siswa = Siswa::findorfail($id);
         $siswa->update($request->all());
 
-        // return redirect('/siswa');
-        return redirect()->route('print-siswa', $siswa->id);
+        return redirect('/siswa')->with('toast_success', 'Data Berhasil Diubah');
+        // return redirect()->route('print-siswa', $siswa->id);
 
     }
 
@@ -99,6 +100,6 @@ class SiswaController extends Controller
     {
         $delete = Siswa::findorfail($id);
         $delete->delete();
-        return redirect('/siswa');
+        return redirect('/siswa')->with('toast_success', 'Data Berhasil Dihapus');
     }
 }
