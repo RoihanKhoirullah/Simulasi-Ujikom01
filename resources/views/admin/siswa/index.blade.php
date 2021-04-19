@@ -6,10 +6,10 @@
           <div class="row">
 
           <div class="row">
-<div class="col-lg-12 col-sm-12 col-md-9 offset">
+<!-- <div class="col-lg-12 col-sm-12 col-md-9 offset">
         <button type="button" class="btn btn-primary my-2" data-toggle="modal" data-target="#addGalModal">
             + Data
-        </button>
+        </button> -->
 
 <!-- TAMBAH BERITA -->
 <div class="modal fade" id="addGalModal" tabindex="-1" aria-labelledby="addAboutModalLabel" aria-hidden="true">
@@ -138,12 +138,17 @@
                             <td>{{ $item->asal_sekolah }}</td>
                             <td>{{ $item->minat_jurusan }}</td>
                             <td>
-                            <a href="{{ route('edit-siswa', $item->id) }}"><i style="color : blue" class="material-icons">edit</i> </a> 
-
-                            <a href="{{ route('delete-siswa', $item->id) }}"><i style="color : red" class="material-icons">delete</i> </a> 
+                            <a href="{{ route('edit-siswa', $item->id) }}"><i style="color : blue" class="material-icons">edit</i> </a>                             
 
                             <a href="{{ route('print-siswa', $item->id) }}"><i style="color : grey" class="material-icons">print</i> </a>
-                        </td>
+                            
+                            <!-- <a href="{{ route('delete-siswa', $item->id) }}"><i style="color : red" class="material-icons">delete</i> </a>  -->
+
+                            <a href="#modalDelete" data-toggle="modal" onclick="$('#modalDelete #formDelete').attr('action' , '{{ route('delete-siswa', $item->id) }}')" class="btn btn-danger btn-xs">
+                              <i class="fa fa-trash"></i> delete 
+                            </a>
+                            
+                            </td>
                         </tr>
                         @endforeach
                       </tbody>
@@ -154,4 +159,26 @@
             </div>
            
 @include('sweetalert::alert')
+
+<div class="modal fade" id="modalDelete">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="close">
+          <span aria-hidden="true"></span>
+        </button>
+        <h4 class="modal-title">Yakin akan menghapus data ini</h4>
+      </div>
+      <div class="modal-footer">
+        <form action="" id="formDelete" method="get">
+          <button class="btn btn-default" data-dismiss="modal" >Tidak</button>
+          <button class="btn btn-danger" type="submit">YA</button>
+        </form>
+      
+      </div>  
+    </div>
+  </div>
+</div>
+
+
 @endsection
