@@ -15,7 +15,13 @@ class SiswaController extends Controller
     public function index()
     {
         $siswa = Siswa::all();
-        return view('admin.siswa.index' ,  compact('siswa'));
+        return view('admin.siswa.index', compact('siswa'));
+    }
+
+    public function PrintSemuaSiswa()
+    {
+        $printsemuasiswa = Siswa::get();
+        return view('admin.siswa.print-semua-siswa', compact('printsemuasiswa'));
     }
 
     /**
@@ -46,8 +52,9 @@ class SiswaController extends Controller
             'minat_jurusan' => $request -> minat_jurusan,            
             
          ]);
-        return redirect('datasiswa')->with('toast_success', 'Data Berhasil Ditambahkan');
-        // return redirect()->route('print-siswa', $siswa->id);
+        // return redirect('print-siswa')->with('toast_success', 'Data Berhasil Ditambahkan');
+        return redirect()->route('print-siswa', $siswa->id);
+        
     }
 
     /**

@@ -1,15 +1,19 @@
 @extends('layouts.admin')
 @section('content')
 
+<!-- CSS ONLY -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">   
+<!-- END CSS -->
+
 <div class="content">
         <div class="container-fluid">
-          <div class="row">
-
-          <div class="row">
-<!-- <div class="col-lg-12 col-sm-12 col-md-9 offset">
-        <button type="button" class="btn btn-primary my-2" data-toggle="modal" data-target="#addGalModal">
+          
+<div class="col-lg-12 col-sm-12 col-md-9 offset">
+        <!-- <button type="button" class="btn btn-primary my-2" data-toggle="modal" data-target="#addGalModal">
             + Data
         </button> -->
+        
+        <a class="btn btn-light" href="print-semua-siswa" role="button">Cetak Semua Siswa</a>
 
 <!-- TAMBAH BERITA -->
 <div class="modal fade" id="addGalModal" tabindex="-1" aria-labelledby="addAboutModalLabel" aria-hidden="true">
@@ -21,13 +25,14 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                 </div>
+
                 <div class="modal-body">
                         <form action="{{ route('simpan-siswa') }}" method="post" enctype="multipart/form-data">
                         @csrf
                                                         
                             <div class="form-group">
                                     <label for="reg">reg</label>
-                                    <input type="number" name="reg" class="form-control" id="reg" required>
+                                    <input type="text" name="reg" class="form-control" id="reg" value="" required>
                             </div>
 
                             <br>
@@ -110,17 +115,16 @@
                   <p class="card-category"> Data dari Pengisian Formulir Pendaftaran</p>
                 </div>
                 <div class="card-body">
-                  <div class="table-responsive">
-                    <table class="table">
+                <table class="table" id="example"> 
                       <thead class=" text-primary">
                         <th>No</th>
-                        <th>reg</th>
-                        <th>nama</th>
-                        <th>jk</th>
-                        <th>alamat</th>
-                        <th>agama</th>
-                        <th>asal_sekolah</th>
-                        <th>minat_jurusan</th>
+                        <th>Reg</th>
+                        <th>Nama</th>
+                        <th>Jenis Kelamin</th>
+                        <th>Alamat</th>
+                        <th>Agama</th>
+                        <th>Asal Sekolah</th>
+                        <th>Minat Jurusan</th>
                         <th>Aksi</th>
                       </thead>
                       <tbody>
@@ -138,17 +142,15 @@
                             <td>{{ $item->asal_sekolah }}</td>
                             <td>{{ $item->minat_jurusan }}</td>
                             <td>
-                            <a href="{{ route('edit-siswa', $item->id) }}"><i style="color : blue" class="material-icons">edit</i> </a>                             
+                              <a href="{{ route('edit-siswa', $item->id) }}"><i style="color : blue" class="material-icons">edit</i> </a>                              
+                              
+                              <a href="{{ route('print-siswa', $item->id) }}"><i style="color : grey" class="material-icons">print</i> </a>
 
-                            <a href="{{ route('print-siswa', $item->id) }}"><i style="color : grey" class="material-icons">print</i> </a>
-                            
-                            <!-- <a href="{{ route('delete-siswa', $item->id) }}"><i style="color : red" class="material-icons">delete</i> </a>  -->
-
-                            <a href="#modalDelete" data-toggle="modal" onclick="$('#modalDelete #formDelete').attr('action' , '{{ route('delete-siswa', $item->id) }}')" class="btn btn-danger btn-xs">
-                              <i class="fa fa-trash"></i> delete 
-                            </a>
-                            
+                              <a href="#modalDelete" data-toggle="modal" onclick="$('#modalDelete #formDelete').attr('action' , '{{ route('delete-siswa', $item->id) }}')" class="btn btn-danger btn-xs">
+                                <i class="fa fa-trash"></i> delete 
+                              </a>
                             </td>
+
                         </tr>
                         @endforeach
                       </tbody>
@@ -180,5 +182,15 @@
   </div>
 </div>
 
-
 @endsection
+
+<!-- JAVA SCRIPT ONLY -->
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<!-- END JAVA SCRIPT -->
+
+<script>
+$(document).ready(function() {
+    $('#example').DataTable();
+} );
+</script>

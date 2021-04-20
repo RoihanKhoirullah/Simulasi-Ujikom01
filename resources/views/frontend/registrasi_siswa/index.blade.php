@@ -11,9 +11,9 @@
 <body>
 
 <div class="content">
-    <div class="container-fluid">
-    <div class="row">
-        <div class="col-lg-12 col-sm-12 col-md-9 offset">
+        <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 col-sm-12 col-md-9 offset">
 
             <form action="{{ route('simpan-siswa') }}" method="post" enctype="multipart/form-data">
             @csrf

@@ -21,7 +21,7 @@ Route::get('/daftar-siswa', function () {
     return view('frontend.registrasi_siswa.index');
 });
 
-Route::get('/admin', function () {
+Route::get('/dashboard', function () {
     return view('admin.index');
 });
 
@@ -32,6 +32,17 @@ Route::post('/update-siswa/{id}' , 'SiswaController@update')->name('update-siswa
 Route::get('/delete-siswa/{id}' , 'SiswaController@destroy')->name('delete-siswa');
 
 Route::get('/print-siswa/{id}' , 'PrintController@index')->name('print-siswa');
-
+Route::get('/print-semua-siswa' , 'SiswaController@PrintSemuaSiswa')->name('print-semua-siswa');
 
 Route::get('/datasiswa' , 'DatasiswaController@index')->name('datasiswa');
+
+// Login
+Route::get('/login', function () {
+    return view('pengguna.login');
+});
+Route::post('/postlogin' , 'LoginController@postlogin')->name('postlogin');
+Route::get('/logout' , 'LoginController@logout')->name('logout');
+
+// Registrasi
+Route::get('/registrasi' , 'LoginController@registrasi')->name('registrasi');
+Route::post('/simpanregistrasi' , 'LoginController@simpanregistrasi')->name('simpanregistrasi');
