@@ -32,7 +32,7 @@
                                                         
                             <div class="form-group">
                                     <label for="reg">reg</label>
-                                    <input type="text" name="reg" class="form-control" id="reg" value="" required>
+                                    <input type="text" name="reg" class="form-control" id="reg" value="" readonly>
                             </div>
 
                             <br>

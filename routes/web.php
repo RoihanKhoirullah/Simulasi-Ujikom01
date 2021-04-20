@@ -17,21 +17,22 @@ Route::get('/', function () {
     return view('frontend.index');
 });
 
-Route::get('/daftar-siswa', function () {
-    return view('frontend.registrasi_siswa.index');
-});
+// Route::get('/daftar-siswa', function () {
+//     return view('frontend.registrasi_siswa.index');
+// });
 
 Route::get('/dashboard', function () {
     return view('admin.index');
 });
 
 Route::get('/siswa' , 'SiswaController@index')->name('siswa');
+Route::get('/daftar-siswa' , 'SiswaController@create')->name('daftar-siswa');
 Route::post('/simpan-siswa' , 'SiswaController@store')->name('simpan-siswa');
 Route::get('/edit-siswa/{id}' , 'SiswaController@edit')->name('edit-siswa');
 Route::post('/update-siswa/{id}' , 'SiswaController@update')->name('update-siswa');
 Route::get('/delete-siswa/{id}' , 'SiswaController@destroy')->name('delete-siswa');
 
-Route::get('/print-siswa/{id}' , 'PrintController@index')->name('print-siswa');
+Route::get('/print-siswa/{id}' , 'SiswaController@PrintSiswa')->name('print-siswa');
 Route::get('/print-semua-siswa' , 'SiswaController@PrintSemuaSiswa')->name('print-semua-siswa');
 
 Route::get('/datasiswa' , 'DatasiswaController@index')->name('datasiswa');

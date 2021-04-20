@@ -13,15 +13,22 @@ class SiswaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
         $siswa = Siswa::all();
         return view('admin.siswa.index', compact('siswa'));
+    
     }
 
     public function PrintSemuaSiswa()
     {
         $printsemuasiswa = Siswa::get();
         return view('admin.siswa.print-semua-siswa', compact('printsemuasiswa'));
+    }
+
+    public function PrintSiswa($id)
+    {
+        $siswa = Siswa::findOrFail($id);
+        return view('admin.siswa.print-siswa',  compact('siswa'));
     }
 
     /**
@@ -31,9 +38,8 @@ class SiswaController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.siswa.create');
     }
-
     /**
      * Store a newly created resource in storage.
      *
